@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Coin Toss</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f3f3f3;
+  }
+  .coin-container {
+    width: 200px;
+    height: 200px;
+    position: relative;
+  }
+  .coin {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: transform 0.6s ease-in-out;
+  }
+  .button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+</style>
+</head>
+<body>
+
+<div class="coin-container">
+  <img class="coin" id="coin" src="https://i.pinimg.com/originals/d7/49/06/d74906d39a1964e7d07555e7601b06ad.gif" alt="Coin">
+</div>
+<button class="button" onclick="tossCoin()">Toss Coin</button>
+
+<script>
+function tossCoin() {
+  var coinElement = document.getElementById('coin');
+  var randomRotation = Math.random() * 360 + 720; // Random rotation between 720 and 1080 degrees
+  var randomDirection = Math.random() < 0.5 ? -1 : 1; // Random direction: -1 (clockwise) or 1 (anti-clockwise)
+  
+  coinElement.style.transition = 'transform 1s ease-out';
+  coinElement.style.transform = 'rotate(' + (randomRotation * randomDirection) + 'deg)';
+  
+  setTimeout(function() {
+    var result = Math.random() < 0.5 ? 'Heads' : 'Tails';
+    alert('Result: ' + result);
+    coinElement.style.transition = 'none';
+    coinElement.style.transform = 'rotate(0deg)';
+  }, 1000);
+}
+</script>
+
+</body>
+</html>
